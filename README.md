@@ -405,6 +405,11 @@ Generate 500000 random IDs with 122 bits of entropy using hex
   Puid hex : 1.823116
 
 Generate 500000 random IDs with 122 bits of entropy using safe64
+  UUID        : 1.751625
+  Puid safe64 : 1.367201
+```
+
+[TOC](#TOC)
 
 Probably Unique IDentifier
 PUID aims to be a general, flexible mechanism for creating random string for use as random IDs. Library implementations also strive to be fast and efficient.
@@ -452,10 +457,3 @@ Elixir
 JavaScript
 Python
 Swift
-
-
-  UUID        : 1.751625
-  Puid safe64 : 1.367201
-```
-
-[TOC](#TOC)
