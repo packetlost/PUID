@@ -418,7 +418,7 @@ For the purposes of PUID, random IDs are a bunch of random strings generated for
 
 # ID Generation
 
-# Entropy source
+#### Entropy source
 PUID provide full control over the bytes used as input into the transformation process, while also providing three default sources: CSPRNG, PRNG and Fixed Bytes.
 
 * CSPRNG: Crytographically Secure Pseudo Random Number Generator. This entropy source is recommended for IDs used in context where security is of importance. Each library utilizes language specific mechanisms to access the crytographically secure random bytes provided by the underlying system.
@@ -427,20 +427,20 @@ PUID provide full control over the bytes used as input into the transformation p
 
 * Fixed Bytes: This entropy source is not random, but provides deterministic bytes useful for testing purposes. An application can use CSPRNG, PRNG, or a custom entropy source for production and configure the use of Fixed Bytes for deterministic testing.
 
-# Characters
+#### Characters
 PUID provides full control over the characters used in generated IDs. A number of predefined character sets are provided, and custom characters (including unicode) can also be specified. To maximize captured entropy, PUID enforces the characters used must be unique.
 
-# Captured randomness
+#### Captured randomness
 The randomness of IDs is actually the ultimate metric in random ID generation. Curiously, many random ID generators don't even specify what that metric is or don't provide any direct way to specify its value. Given the importance of the metric, it should be explicitly clear how random random IDs are. PUID provides direct specification of the bits of entropy desired for IDs, as well as an intuitive way to specify desired randomness in a total number of generated IDs given a specific risk.
 
-# Correctness
+#### Correctness
 Each PUID library includes extensive test suites for correctness:
 
 Fixed Bytes entropy sources provide bit level inspection of the correctness in transforming source entropy into random IDs.
 
 Character distribution across large numbers of IDs is tested for uniform distribution using chi-square analysis. These tests are independently and directly performed with the Elixir and Python libraries. All libraries validate ID generation by using comparing output of chi-square tested data with expected output.
 
-# Efficiency
+#### Efficiency
 The general, flexible use of PUID is its primary goals. However, careful consideration has been taken to make the library implementations fast and efficient as well:
 
 PUID produces IDs from its entropy source using a low-level bit slicing scheme that only uses the number of bits necessary to (conceptually) index into an array of input characters. For example, when using 26 lowercase alpha characters, such an index would require at most 5 bits, so PUID sliced input entropy bytes 5 bits at a time. This is in direct contrast to using, for example, a random integer produced from an IEEE 754 float that may well have 53 actual bits of entropy.
